@@ -1,0 +1,151 @@
+The entire code is maintained into 5 main categories and it is available in the following main folders.
+1. Folder name: Data cleaning
+This folder contains four python files and 4 csv files contain raw data from four regions of UK. 
+The output after data cleaning will be stored into four seperate csv files.
+	a.	data_cleaning_Wales_region.ipynb : It will check the missing, duplicates and null values in dataset of Wales region. 
+		It checks the column names and format into meaningful names.
+		It also format the date field which is given in 3 seperate columns. 
+		input file : Wales_daily_1981-2023 July.csv
+		output file : Wales_dataset_cleaned.csv
+	b.	data_cleaning_NorthernIreland_region.ipynb : It will check the missing, duplicates and null values in dataset of Northern Ireland region. 
+		It checks the column names and format into meaningful names.
+		It also format the date field which is given in 3 seperate columns. 
+		input file : Ireland_daily_1981-2023 July.csv
+		output file : Ireland_dataset_cleaned.csv
+	c. 	data_cleaning_Scotland_region.ipynb : It will check the missing, duplicates and null values in dataset of Scotland region. 
+		It checks the column names and format into meaningful names.
+		It also format the date field which is given in 3 seperate columns. 
+		input file : Scotland_daily_1981-2023 July.csv
+		output file: Scotland_dataset_cleaned.csv
+	d. 	data_cleaning_England_region.ipynb : It will check the missing, duplicates and null values in dataset of England region. 
+		It checks the column names and format into meaningful names.
+		It also format the date field which is given in 3 seperate columns.
+		input file : England_daily_1981-2023 July.csv
+		output file: England_dataset_cleaned.csv
+
+2. Folder name: EDA
+This folder contains python files for conducting Exploratory data analysis of the dataset of four regions obtained after data cleaning process. 
+The input to all the programs in this folder are: 
+- Scotland_dataset_cleaned.csv
+- Ireland_dataset_cleaned.csv
+- England_dataset_cleaned.csv
+- Wales_dataset_cleaned.csv
+a. all locations_rainfall and temp values checking.ipynb : 
+   This code will provide visualization plots for  
+   - total temperature and rainfall for first and last five years of the entire duration
+   - number of hot and rainy days in yearwise for all four locations
+   - average monthly temperature for the entire duration for all four locations
+b. all locations_all variables_checking type of correlation.ipynb
+   This code will provide visualization plots for  
+   - monthly average of all parameters for all four locations
+   - annual rainfall with other parameters for all four locations
+   - daily rainfall with other parameters during rainy months for all four locations
+c. Seasonal and trend Analysis of All locations.ipynb
+   This code will provide visualization plots for 
+   - seasonality, trend and residual analysis
+d. all locations_all variables_trend analysis over the year.ipynb
+   This code will provide visualization plots for 
+   - all parameters to check annual patterns in all four locations 
+   - lowest and highest value range and latest year value of all annual values in all four locations 
+   - average of all parameters during 2013-2023 to check the pattern over last ten years
+   - Trend of all parameters over the year in all four locations
+e. Rainfall Analysis of All locations.ipynb
+   This code will provide visualization plots for 
+   - rainfall patterns in daily, monthly, annually, and seasonally  in all four locations 
+   
+3. Folder name: Feature Engineering
+   This folder contains four subfolders named England, Wales, Scotland, and Northern Ireland 
+   a. England folder: Feature engineering and correlation matrix_England.ipynb
+	  This code will:
+	  - add new column season to the dataset 
+	  - calculate the pearson correlation and plot correlation matrix
+	  - remove data columns with high correlation (+ or - .7) for the England dataset 
+	  - create a new csv file.
+	  input to the code - England_dataset_cleaned.csv
+	  output file - England_dataset_final_1981-2023.csv
+   b. Wales folder: Feature engineering and correlation matrix_Wales.ipynb
+	  This code will:
+	  - add new column season to the dataset 
+	  - calculate the pearson correlation and plot correlation matrix
+	  - remove data columns with high correlation (+ or - .7) for the Wales dataset 
+	  - create a new csv file.
+	  input to the code - Wales_dataset_cleaned.csv
+	  output file - Wales_dataset_final_1981-2023.csv
+   c. Scotland folder: Feature engineering and correlation matrix_Scotland.ipynb
+	  This code will:
+	  - add new column season to the dataset 
+	  - calculate the pearson correlation and plot correlation matrix
+	  - remove data columns with high correlation (+ or - .7) for the Scotland dataset 
+	  - create a new csv file.
+	  input to the code - Scotland_dataset_cleaned.csv
+	  output file - Scotland_dataset_final_1981-2023.csv
+   d. Ireland folder: Feature engineering and correlation matrix_Ireland.ipynb
+	  This code will:
+	  - add new column season to the dataset 
+	  - calculate the pearson correlation and plot correlation matrix
+	  - remove data columns with high correlation (+ or - .7) for the Ireland dataset 
+	  - create a new csv file.
+	  input to the code - Ireland_dataset_cleaned.csv
+	  output file - Ireland_dataset_final_1981-2023.csv
+
+4. Folder name: Hyperparameter tuning
+   This folder contains three python files.
+   a. Hyperparameter tuning_LSTM_with_GridSearchCV.ipynb
+	  This code will use daily data from all locations after feature engineering and 
+	  implement GridSearchCV hyperparameter tuning with LSTM to find best parameters for each dataset
+   b. Hyperparameter tuning_StackedLSTM_with_GridSearchCV.ipynb
+	  This code will use daily data from all locations after feature engineering and 
+	  implement GridSearchCV hyperparameter tuning with Stacked LSTM to find best parameters for each dataset
+   c. Hyperparameter tuning_Bi-LSTM_with_GridSearchCV.ipynb
+	  This code will use daily data from all locations after feature engineering and 
+	  implement GridSearchCV hyperparameter tuning with Bidirectional LSTM to find best parameters for each dataset
+   The input to all the programs in this folder are: 
+   - England_dataset_final_1981-2023.csv
+   - Wales_dataset_final_1981-2023.csv
+   - Scotland_dataset_final_1981-2023.csv
+   - Ireland_dataset_final_1981-2023.csv
+    
+4. Folder name: Modelling
+   This folder contains five subfolder
+   a. lstm
+   This subfolder contains a python file to implement LSTM for rainfall forecasting on daily basis
+   - Rainfall forecasting_LSTM.ipynb: 
+	 This code will use the daily data of 1981-2023 of all four regions after feature selection 
+	 and forecast rainfall using LSTM Method based on the selected hyperparameters and parameters.
+	 It also provide visualisation plot for training and validation loss, predicted vs original, and forecasted and original values
+	 This code calculates the evaluation matrix such as MAE, RMSE and loss values
+   b. stackedlstm
+   This subfolder contains a python file to implement LSTM for rainfall forecasting on daily basis
+   - Rainfall forecasting_LSTM.ipynb: 
+	 This code will use the daily data of 1981-2023 of all four regions after feature selection 
+	 and forecast rainfall using stacked LSTM Method based on the selected hyperparameters and parameters.
+	 It also provide visualisation plot for training and validation loss, predicted vs original, and forecasted and original values
+	 This code calculates the evaluation matrix such as MAE, RMSE and loss values
+   c. bidirectional lstm
+   This subfolder contains a python file to implement LSTM for rainfall forecasting on daily basis
+   - Rainfall forecasting_LSTM.ipynb: 
+	 This code will use the daily data of 1981-2023 of all four regions after feature selection 
+	 and forecast rainfall using bidirectional LSTM Method based on the selected hyperparameters and parameters.
+	 It also provide visualisation plot for training and validation loss, predicted vs original, and forecasted and original values
+	 This code calculates the evaluation matrix such as MAE, RMSE and loss values
+   d. cnn+lstm
+   - Rainfall forecasting_LSTM.ipynb: 
+	 This code will use the daily data of 1981-2023 of all four regions after feature selection 
+	 and forecast rainfall using CNN LSTM Method based on the selected hyperparameters and parameters.
+	 It also provide visualisation plot for training and validation loss, predicted vs original, and forecasted and original values
+	 This code calculates the evaluation matrix such as MAE, RMSE and loss values
+   e. rnn+lstm
+   - Rainfall forecasting_LSTM.ipynb: 
+	 This code will use the daily data of 1981-2023 of all four regions after feature selection 
+	 and forecast rainfall using RNN LSTM Method based on the selected hyperparameters and parameters.
+	 It also provide visualisation plot for training and validation loss, predicted vs original, and forecasted and original values
+	 This code calculates the evaluation matrix such as MAE, RMSE and loss values
+	 
+   The inputs to all the programs in this folder are the output obtained after the feature engineering and the inputs are: 
+   - England_dataset_final_1981-2023.csv
+   - Wales_dataset_final_1981-2023.csv
+   - Scotland_dataset_final_1981-2023.csv
+   - Ireland_dataset_final_1981-2023.csv
+
+
+ 
